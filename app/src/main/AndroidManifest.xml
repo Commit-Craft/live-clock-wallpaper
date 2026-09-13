@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-sdk tools:overrideLibrary="androidx.compose.material3, androidx.compose.material, androidx.compose.material.ripple, androidx.compose.material.icons, androidx.compose.ui, androidx.compose.ui.graphics, androidx.compose.ui.text, androidx.compose.ui.unit, androidx.compose.ui.geometry, androidx.compose.ui.util, androidx.compose.ui.tooling, androidx.compose.ui.tooling.data, androidx.compose.ui.tooling.preview, androidx.compose.ui.test.manifest, androidx.compose.foundation, androidx.compose.foundation.layout, androidx.compose.runtime, androidx.compose.runtime.saveable, androidx.compose.runtime.annotation, androidx.compose.runtime.retain, androidx.compose.animation, androidx.compose.animation.core, androidx.activity.compose, androidx.activity, androidx.window, androidx.window.core" />
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-feature
+        android:name="android.software.live_wallpaper"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ClockLiveWallpaper">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.ClockLiveWallpaper"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".MinimalistClockWallpaperService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper" />
+        </service>
+
+    </application>
+
+</manifest>
